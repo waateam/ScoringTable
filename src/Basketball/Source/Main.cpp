@@ -58,7 +58,7 @@ BasketballApplication::MainWindow::MainWindow(String name)
 					 Colours::lightgrey,
 					 5)
 {
-	setUsingNativeTitleBar(true);
+	setUsingNativeTitleBar(false);
 	setContentOwned(new MainContentComponent(), true);
 
 	centreWithSize(getWidth(), getHeight());
