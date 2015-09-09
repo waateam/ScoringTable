@@ -56,11 +56,14 @@ void BasketballApplication::MainWindow::closeButtonPressed()
 BasketballApplication::MainWindow::MainWindow(String name)
 	: DocumentWindow(name,
 					 Colours::lightgrey,
-					 DocumentWindow::allButtons)
+					 5)
 {
 	setUsingNativeTitleBar(true);
 	setContentOwned(new MainContentComponent(), true);
 
 	centreWithSize(getWidth(), getHeight());
 	setVisible(true);
+
+	setResizable(false, false);
+	setFullScreen(true);
 }
