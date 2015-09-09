@@ -8,6 +8,7 @@
   ==============================================================================
 */
 
+#include <JuceHeader.h>
 #include "Main.h"
 
 BasketballApplication::BasketballApplication()
@@ -42,6 +43,10 @@ void BasketballApplication::anotherInstanceStarted(const String& commandLine)
 	// the other instance's command-line arguments were.
 }
 
+
+//=================================================================
+//class MainWindow
+//=================================================================
 void BasketballApplication::MainWindow::closeButtonPressed()
 {
 
