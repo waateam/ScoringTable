@@ -8,11 +8,19 @@
 
 #include "MainComponent.h"
 
+namespace {
+
+enum WindowParameter : int {
+	kWindowWidth = 600,
+	kWindowHeight = 400
+};
+
+};
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
-    setSize (600, 400);
+	setSize(kWindowWidth, kWindowHeight);
 }
 
 MainContentComponent::~MainContentComponent()
