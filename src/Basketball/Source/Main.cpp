@@ -65,5 +65,5 @@ BasketballApplication::MainWindow::MainWindow(String name)
 	setVisible(true);
 
 	setResizable(false, false);
-	setFullScreen(true);
+	setFullScreen(false);
 }
