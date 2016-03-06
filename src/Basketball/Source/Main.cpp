@@ -24,7 +24,7 @@ void BasketballApplication::initialise(const String& commandLine)
 	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
 }
 
-void RegisterMainWindowCallbacks(MainContentComponent& mcc)
+void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mcc)
 {
 }
 

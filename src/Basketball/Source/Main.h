@@ -26,13 +26,15 @@ public:
 	void anotherInstanceStarted(const String& commandLine) override;
 
 	//==============================================================================
+	void RegisterMainWindowCallbacks(MainContentComponent& mcc);
+
 	/*
 	This class implements the desktop window that contains an instance of
 	our MainContentComponent class.
 	*/
 	class MainWindow : public DocumentWindow
 	{
-        MainContentComponent* main_component_ = nullptr;
+		MainContentComponent* main_component_ = nullptr;
 	public:
 		MainWindow(String name);
 
@@ -48,7 +50,7 @@ public:
 		subclass also calls the superclass's method.
 		*/
 
-        MainContentComponent& GetMainComponent() const;
+		MainContentComponent& GetMainComponent() const;
 
 	private:
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainWindow)
