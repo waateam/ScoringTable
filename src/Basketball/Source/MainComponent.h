@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    This file was auto-generated!
+	This file was auto-generated!
 
   ==============================================================================
 */
@@ -14,30 +14,45 @@
 
 //==============================================================================
 /*
-    This component lives inside our window, and this is where you should put all
-    your controls and content.
+	This component lives inside our window, and this is where you should put all
+	your controls and content.
 */
 class MainContentComponent   : public Component,
 							   private Button::Listener
 {
 public:
-    //==============================================================================
-    MainContentComponent();
-    ~MainContentComponent();
+	//==============================================================================
+	MainContentComponent();
+	~MainContentComponent();
 
-    void paint (Graphics&);
-    void resized();
+	void paint (Graphics&);
+	void resized();
 
 private:
-	TextButton upgrade_device_button_;
+	TextButton home_score_increase_button_;
+	TextButton home_score_decrease_button_;
+
+	TextButton guest_score_increase_button_;
+	TextButton guest_score_decrease_button_;
+
+	Label home_score_label_;
+	Label guest_score_label_;
+
+	int home_score_;
+	int guest_score_;
 
 	void buttonClicked(Button* b) override;
 
-	void InitialButton(Component& parent);
-	void setButtonToStart();
-	void setButtonToFinish();
-    //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
+	void InitialHomeScoreLabel(Component& parent);
+	void InitialGuestScoreLabel(Component& parent);
+
+	void InitialHomeScoreIncreaseButton(Component& parent, const Component& home_score_laebl);
+	void InitialHomeScoreDecreaseButton(Component& parent, const Component& home_score_laebl);
+
+	void InitialGuestScorePlusButton(Component& parent, const Component& home_score_laebl);
+	void InitialGuestScoreDecreaseButton(Component& parent, const Component& home_score_laebl);
+	//==============================================================================
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
 

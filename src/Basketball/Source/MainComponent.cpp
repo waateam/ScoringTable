@@ -1,12 +1,14 @@
 /*
   ==============================================================================
 
-    This file was auto-generated!
+	This file was auto-generated!
 
   ==============================================================================
 */
 
 #include "MainComponent.h"
+
+const char kScoreFontName[] = "Segoe UI";
 
 namespace {
 
@@ -15,13 +17,38 @@ enum WindowParameter : int {
 	kWindowHeight = 400
 };
 
+void InitialControlScoreTextButton(TextButton& button,
+								   Component& parent,
+								   const String& button_text = String::empty,
+								   int x = 0,
+								   int y = 0,
+								   Colour button_color = Colours::white,
+								   Colour text_color = Colours::black)
+{
+	button.setButtonText(button_text);
+	button.setEnabled(true);
+	button.setColour(TextButton::buttonColourId, button_color);
+	button.setColour(TextButton::textColourOffId, text_color);
+	button.setBounds(x,
+					 y,
+					 50,
+					 20);
+	button.changeWidthToFitText();
+	parent.addAndMakeVisible(button);
+}
+
 };
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
 	setSize(kWindowWidth, kWindowHeight);
-	InitialButton(*this);
+	InitialHomeScoreLabel(*this);
+	InitialGuestScoreLabel(*this);
+	InitialHomeScoreIncreaseButton(*this, home_score_label_);
+	InitialHomeScoreDecreaseButton(*this, home_score_increase_button_);
+	InitialGuestScorePlusButton(*this, guest_score_label_);
+	InitialGuestScoreDecreaseButton(*this, guest_score_increase_button_);
 }
 
 MainContentComponent::~MainContentComponent()
@@ -32,54 +59,128 @@ void MainContentComponent::paint (Graphics& g)
 {
 	g.fillAll(Colour(0xff7DB9DE));
 
-    g.setFont (Font (16.0f));
-    g.setColour (Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), Justification::centred, true);
+	g.setFont (Font (48.0f));
+	g.setColour (Colours::white);
+
+	g.drawText ("Score Table Test",
+				juce::Rectangle<int>(getLocalBounds().getWidth(), getLocalBounds().getHeight()/3),
+				Justification::centred,
+				true);
 }
 
 void MainContentComponent::resized()
 {
-    // This is called when the MainContentComponent is resized.
-    // If you add any child components, this is where you should
-    // update their positions.
+	// This is called when the MainContentComponent is resized.
+	// If you add any child components, this is where you should
+	// update their positions.
 }
 
-void MainContentComponent::InitialButton(Component& parent)
+void MainContentComponent::InitialHomeScoreLabel(Component& parent)
 {
-	upgrade_device_button_.setButtonText("TEST");
-	upgrade_device_button_.addListener(this);
-	upgrade_device_button_.setEnabled(true);
-	upgrade_device_button_.setColour(TextButton::buttonColourId, Colours::green);
-	upgrade_device_button_.setColour(TextButton::textColourOffId, Colours::white);
-	upgrade_device_button_.setBounds(20, 350, 50, 20);
-	upgrade_device_button_.changeWidthToFitText();
-	upgrade_device_button_.setCentrePosition(parent.getWidth() / 3 ,
-											 parent.getHeight() / 3);
-	parent.addAndMakeVisible(upgrade_device_button_);
+	home_score_ = 0;
+	home_score_label_.setColour(Label::textColourId, Colours::black);
+	home_score_label_.setText((String)home_score_, dontSendNotification);
+	home_score_label_.setFont(Font(kScoreFontName, 50, juce::Font::bold));
+	home_score_label_.setBounds((parent.getWidth() /3)*2,
+							   parent.getHeight() /5,
+							   200,
+							   100);
+
+	parent.addAndMakeVisible(home_score_label_);
+}
+
+void MainContentComponent::InitialGuestScoreLabel(Component& parent)
+{
+	guest_score_ = 0;
+	guest_score_label_.setColour(Label::textColourId, Colours::black);
+	guest_score_label_.setText((String)guest_score_, dontSendNotification);
+	guest_score_label_.setFont(Font(kScoreFontName, 50, juce::Font::bold));
+	guest_score_label_.setBounds(parent.getWidth() /3,
+								parent.getHeight() / 5,
+								200,
+								100);
+
+	parent.addAndMakeVisible(guest_score_label_);
+}
+
+void MainContentComponent::InitialHomeScoreIncreaseButton(Component& parent,
+														  const Component& home_score_laebl)
+{
+	InitialControlScoreTextButton(home_score_increase_button_,
+								  parent,
+								  "+1",
+								  home_score_laebl.getX() - 25,
+								  home_score_laebl.getBottom() + 10,
+								  Colours::green,
+								  Colours::white);
+
+	home_score_increase_button_.addListener(this);
+}
+
+void MainContentComponent::InitialHomeScoreDecreaseButton(Component& parent,
+														  const Component& home_score_increase_button)
+{
+	InitialControlScoreTextButton(home_score_decrease_button_,
+								  parent,
+								  "-1",
+								  home_score_increase_button.getRight() + 20,
+								  home_score_increase_button.getY(),
+								  Colours::red,
+								  Colours::white);
+
+	home_score_decrease_button_.addListener(this);
+}
+
+void MainContentComponent::InitialGuestScorePlusButton(Component& parent,
+													   const Component& guest_score_laebl)
+{
+	InitialControlScoreTextButton(guest_score_increase_button_,
+								  parent,
+								  "+1",
+								  guest_score_laebl.getX() - 25,
+								  guest_score_laebl.getBottom() + 10,
+								  Colours::green,
+								  Colours::white);
+
+	guest_score_increase_button_.addListener(this);
+}
+
+void MainContentComponent::InitialGuestScoreDecreaseButton(Component& parent,
+														   const Component& guest_score_increase_button)
+{
+	InitialControlScoreTextButton(guest_score_decrease_button_,
+								  parent,
+								  "-1",
+								  guest_score_increase_button.getRight() + 20,
+								  guest_score_increase_button.getY(),
+								  Colours::red,
+								  Colours::white);
+
+	guest_score_decrease_button_.addListener(this);
 }
 
 void MainContentComponent::buttonClicked(Button* b)
 {
-	if (b == &upgrade_device_button_) {
-		if (upgrade_device_button_.getButtonText().equalsIgnoreCase("Start"))
-			setButtonToFinish();
-		else
-			setButtonToStart();
+	if (b == &home_score_increase_button_) {
+		home_score_label_.setText((String)(++home_score_),
+								  juce::NotificationType::sendNotification);
 	}
-}
+	else if (b == &home_score_decrease_button_) {
+		if (home_score_ == 0)
+			return;
 
-void MainContentComponent::setButtonToStart()
-{
-	upgrade_device_button_.setButtonText("Start");
-	upgrade_device_button_.changeWidthToFitText();
-	upgrade_device_button_.setColour(TextButton::buttonColourId, Colours::green);
-	upgrade_device_button_.setColour(TextButton::textColourOffId, Colours::white);
-}
+		home_score_label_.setText((String)(--home_score_),
+								  juce::NotificationType::sendNotification);
+	}
+	else if (b == &guest_score_increase_button_) {
+		guest_score_label_.setText((String)(++guest_score_),
+								  juce::NotificationType::sendNotification);
+	}
+	else if (b == &guest_score_decrease_button_) {
+		if (guest_score_ == 0)
+			return;
 
-void MainContentComponent::setButtonToFinish()
-{
-	upgrade_device_button_.setButtonText("Finishhhhhhhhhhhhhhhhhhhh");
-	upgrade_device_button_.changeWidthToFitText();
-	upgrade_device_button_.setColour(TextButton::buttonColourId, Colours::red);
-	upgrade_device_button_.setColour(TextButton::textColourOffId, Colours::gold);
+		guest_score_label_.setText((String)(--guest_score_),
+								  juce::NotificationType::sendNotification);
+	}
 }
