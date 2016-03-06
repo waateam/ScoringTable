@@ -95,7 +95,7 @@ void MainContentComponent::resized()
 
 void MainContentComponent::InitialHomeScoreLabel(Component& parent)
 {
-	home_score_label_.setColour(Label::textColourId, Colours::black);
+	home_score_label_.setColour(Label::textColourId, Colours::gold);
 	home_score_label_.setText("0", dontSendNotification);
 	home_score_label_.setFont(Font(kScoreFontName, 50, juce::Font::bold));
 	home_score_label_.setBounds((parent.getWidth() /3)*2,
@@ -108,7 +108,7 @@ void MainContentComponent::InitialHomeScoreLabel(Component& parent)
 
 void MainContentComponent::InitialGuestScoreLabel(Component& parent)
 {
-	guest_score_label_.setColour(Label::textColourId, Colours::black);
+	guest_score_label_.setColour(Label::textColourId, Colours::gold);
 	guest_score_label_.setText("0", dontSendNotification);
 	guest_score_label_.setFont(Font(kScoreFontName, 50, juce::Font::bold));
 	guest_score_label_.setBounds(parent.getWidth() /3,
