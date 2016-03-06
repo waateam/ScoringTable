@@ -85,9 +85,8 @@ void MainContentComponent::resized()
 
 void MainContentComponent::InitialHomeScoreLabel(Component& parent)
 {
-	home_score_ = 0;
 	home_score_label_.setColour(Label::textColourId, Colours::black);
-	home_score_label_.setText((String)home_score_, dontSendNotification);
+	home_score_label_.setText("0", dontSendNotification);
 	home_score_label_.setFont(Font(kScoreFontName, 50, juce::Font::bold));
 	home_score_label_.setBounds((parent.getWidth() /3)*2,
 							   parent.getHeight() /5,
@@ -99,9 +98,8 @@ void MainContentComponent::InitialHomeScoreLabel(Component& parent)
 
 void MainContentComponent::InitialGuestScoreLabel(Component& parent)
 {
-	guest_score_ = 0;
 	guest_score_label_.setColour(Label::textColourId, Colours::black);
-	guest_score_label_.setText((String)guest_score_, dontSendNotification);
+	guest_score_label_.setText("0", dontSendNotification);
 	guest_score_label_.setFont(Font(kScoreFontName, 50, juce::Font::bold));
 	guest_score_label_.setBounds(parent.getWidth() /3,
 								parent.getHeight() / 5,
@@ -196,38 +194,20 @@ void MainContentComponent::buttonClicked(Button* b)
 		cb_iter = observers_.find(kHomeScoreIncreaseButton);
 		if (cb_iter != observers_.end())
 			cb_iter->second();
-
-		/*home_score_label_.setText((String)(++home_score_),
-								  juce::NotificationType::sendNotification);*/
 	}
 	else if (b == &home_score_decrease_button_) {
 		cb_iter = observers_.find(kHomeScoreDecreaseButton);
 		if (cb_iter != observers_.end())
 			cb_iter->second();
-
-		/*if (home_score_ == 0)
-			return;
-
-		home_score_label_.setText((String)(--home_score_),
-								  juce::NotificationType::sendNotification);*/
 	}
 	else if (b == &guest_score_increase_button_) {
 		cb_iter = observers_.find(kGuestScoreIncreaseButton);
 		if (cb_iter != observers_.end())
 			cb_iter->second();
-
-		/*guest_score_label_.setText((String)(++guest_score_),
-								  juce::NotificationType::sendNotification);*/
 	}
 	else if (b == &guest_score_decrease_button_) {
 		cb_iter = observers_.find(kGuestScoreDecreaseButton);
 		if (cb_iter != observers_.end())
 			cb_iter->second();
-
-		//if (guest_score_ == 0)
-		//	return;
-
-		//guest_score_label_.setText((String)(--guest_score_),
-		//						  juce::NotificationType::sendNotification);
 	}
 }

@@ -63,9 +63,6 @@ private:
 	Label home_score_label_;
 	Label guest_score_label_;
 
-	int home_score_;
-	int guest_score_;
-
 	void buttonClicked(Button* b) override;
 
 	void InitialHomeScoreLabel(Component& parent);
