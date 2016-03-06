@@ -45,6 +45,9 @@ void InitialControlScoreTextButton(TextButton& button,
 MainContentComponent::MainContentComponent()
 {
 	setSize(kWindowWidth, kWindowHeight);
+
+	InitialGameClockLabel(*this);
+
 	InitialHomeScoreLabel(*this);
 	InitialGuestScoreLabel(*this);
 	InitialHomeScoreIncreaseButton(*this, home_score_label_);
@@ -57,6 +60,21 @@ MainContentComponent::~MainContentComponent()
 {
 }
 
+void MainContentComponent::InitialGameClockLabel(Component& parent)
+{
+	game_clock_label_.setColour(Label::textColourId, Colours::red);
+	game_clock_label_.setText("00:00", dontSendNotification);
+	game_clock_label_.setFont(Font(kScoreFontName, 100, juce::Font::bold));
+	
+	const Rectangle<int> label_size(0, 0, 200, 100);
+	game_clock_label_.setBounds((parent.getWidth() / 2) - (label_size.getWidth()/2),
+								0,
+								label_size.getWidth(),
+								label_size.getHeight());
+
+	parent.addAndMakeVisible(game_clock_label_);
+}
+
 void MainContentComponent::RegisterMainWindowCallbacks(const int callback_id,
 													   ButtonClickCallback bc_cb)
 {
@@ -66,14 +84,6 @@ void MainContentComponent::RegisterMainWindowCallbacks(const int callback_id,
 void MainContentComponent::paint (Graphics& g)
 {
 	g.fillAll(Colour(0xff7DB9DE));
-
-	g.setFont (Font (48.0f));
-	g.setColour (Colours::white);
-
-	g.drawText ("Score Table Test",
-				juce::Rectangle<int>(getLocalBounds().getWidth(), getLocalBounds().getHeight()/3),
-				Justification::centred,
-				true);
 }
 
 void MainContentComponent::resized()

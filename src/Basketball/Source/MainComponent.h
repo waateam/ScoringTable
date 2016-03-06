@@ -60,10 +60,13 @@ private:
 	TextButton guest_score_increase_button_;
 	TextButton guest_score_decrease_button_;
 
+	Label game_clock_label_;
 	Label home_score_label_;
 	Label guest_score_label_;
 
 	void buttonClicked(Button* b) override;
+
+	void InitialGameClockLabel(Component& parent);
 
 	void InitialHomeScoreLabel(Component& parent);
 	void InitialGuestScoreLabel(Component& parent);
