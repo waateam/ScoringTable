@@ -27,7 +27,7 @@ public:
 
 	//==============================================================================
 	void RegisterMainWindowCallbacks(MainContentComponent& mcc);
-
+	void RegisterHomeScoreIncreaseButton(MainContentComponent& mcc);
 	/*
 	This class implements the desktop window that contains an instance of
 	our MainContentComponent class.

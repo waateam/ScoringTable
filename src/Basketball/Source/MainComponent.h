@@ -32,7 +32,7 @@ enum ButtonType : int {
 class MainContentComponent   : public Component,
 							   private Button::Listener
 {
-	typedef std::function<bool(const waa::ButtonType bt)> ButtonClickCallback;
+	typedef std::function<bool()> ButtonClickCallback;
 	typedef std::map<int, ButtonClickCallback> CallbackBucket;
 public:
 	//==============================================================================

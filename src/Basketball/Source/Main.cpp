@@ -11,6 +11,8 @@
 #include <JuceHeader.h>
 #include "Main.h"
 
+using namespace waa;
+
 BasketballApplication::BasketballApplication()
 {
 }
@@ -24,8 +26,19 @@ void BasketballApplication::initialise(const String& commandLine)
 	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
 }
 
+void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent& mcc)
+{
+	mcc.RegisterMainWindowCallbacks(kHomeScoreIncreaseButton,
+									[]()
+	{
+		Logger::outputDebugString("callback arrive here");
+		return true;
+	});
+}
+
 void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mcc)
 {
+	RegisterHomeScoreIncreaseButton(mcc);
 }
 
 void BasketballApplication::shutdown()

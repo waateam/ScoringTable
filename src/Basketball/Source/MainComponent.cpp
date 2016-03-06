@@ -8,6 +8,8 @@
 
 #include "MainComponent.h"
 
+using namespace waa;
+
 const char kScoreFontName[] = "Segoe UI";
 
 namespace {
@@ -167,9 +169,14 @@ void MainContentComponent::InitialGuestScoreDecreaseButton(Component& parent,
 
 void MainContentComponent::buttonClicked(Button* b)
 {
+	CallbackBucket::iterator cb_iter;
 	if (b == &home_score_increase_button_) {
-		home_score_label_.setText((String)(++home_score_),
-								  juce::NotificationType::sendNotification);
+		cb_iter = observers_.find(kHomeScoreIncreaseButton);
+		if (cb_iter != observers_.end())
+			cb_iter->second();
+
+		/*home_score_label_.setText((String)(++home_score_),
+								  juce::NotificationType::sendNotification);*/
 	}
 	else if (b == &home_score_decrease_button_) {
 		if (home_score_ == 0)
