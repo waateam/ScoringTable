@@ -47,6 +47,7 @@ MainContentComponent::MainContentComponent()
 	setSize(kWindowWidth, kWindowHeight);
 
 	InitialGameClockLabel(*this);
+	InitialShotClockLabel(*this, game_clock_label_);
 
 	InitialHomeScoreLabel(*this);
 	InitialGuestScoreLabel(*this);
@@ -73,6 +74,22 @@ void MainContentComponent::InitialGameClockLabel(Component& parent)
 								label_size.getHeight());
 
 	parent.addAndMakeVisible(game_clock_label_);
+}
+
+void MainContentComponent::InitialShotClockLabel(Component& parent,
+												 const Component& game_clock_label)
+{
+	shot_clock_label_.setColour(Label::textColourId, Colours::red);
+	shot_clock_label_.setText("24", dontSendNotification);
+	shot_clock_label_.setFont(Font(kScoreFontName, 75, juce::Font::bold));
+
+	const Rectangle<int> label_size(0, 0, 75, 75);
+	shot_clock_label_.setBounds((parent.getWidth() / 2) - (label_size.getWidth() / 2),
+								parent.getBottom() - label_size.getHeight()*2,
+								label_size.getWidth(),
+								label_size.getHeight());
+
+	parent.addAndMakeVisible(shot_clock_label_);
 }
 
 void MainContentComponent::RegisterMainWindowCallbacks(const int callback_id,
