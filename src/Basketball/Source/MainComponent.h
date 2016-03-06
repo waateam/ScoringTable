@@ -42,6 +42,9 @@ public:
 	void SetHomeScore(const int score);
 	int GetHomeScore() const;
 
+	void SetGuestScore(const int score);
+	int GetGuestScore() const;
+
 	void RegisterMainWindowCallbacks(const int callback_id,
 									 ButtonClickCallback bc_cb);
 

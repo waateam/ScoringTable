@@ -178,6 +178,17 @@ int MainContentComponent::GetHomeScore() const
 	return home_score_label_.getText().getIntValue();
 }
 
+void MainContentComponent::SetGuestScore(const int score)
+{
+	guest_score_label_.setText(static_cast<String>(score),
+							  juce::NotificationType::sendNotification);
+}
+
+int MainContentComponent::GetGuestScore() const
+{
+	return guest_score_label_.getText().getIntValue();
+}
+
 void MainContentComponent::buttonClicked(Button* b)
 {
 	CallbackBucket::iterator cb_iter;
@@ -190,21 +201,33 @@ void MainContentComponent::buttonClicked(Button* b)
 								  juce::NotificationType::sendNotification);*/
 	}
 	else if (b == &home_score_decrease_button_) {
-		if (home_score_ == 0)
+		cb_iter = observers_.find(kHomeScoreDecreaseButton);
+		if (cb_iter != observers_.end())
+			cb_iter->second();
+
+		/*if (home_score_ == 0)
 			return;
 
 		home_score_label_.setText((String)(--home_score_),
-								  juce::NotificationType::sendNotification);
+								  juce::NotificationType::sendNotification);*/
 	}
 	else if (b == &guest_score_increase_button_) {
-		guest_score_label_.setText((String)(++guest_score_),
-								  juce::NotificationType::sendNotification);
+		cb_iter = observers_.find(kGuestScoreIncreaseButton);
+		if (cb_iter != observers_.end())
+			cb_iter->second();
+
+		/*guest_score_label_.setText((String)(++guest_score_),
+								  juce::NotificationType::sendNotification);*/
 	}
 	else if (b == &guest_score_decrease_button_) {
-		if (guest_score_ == 0)
-			return;
+		cb_iter = observers_.find(kGuestScoreDecreaseButton);
+		if (cb_iter != observers_.end())
+			cb_iter->second();
 
-		guest_score_label_.setText((String)(--guest_score_),
-								  juce::NotificationType::sendNotification);
+		//if (guest_score_ == 0)
+		//	return;
+
+		//guest_score_label_.setText((String)(--guest_score_),
+		//						  juce::NotificationType::sendNotification);
 	}
 }

@@ -26,28 +26,6 @@ void BasketballApplication::initialise(const String& commandLine)
 	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
 }
 
-void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent& mcc)
-{
-	mcc.RegisterMainWindowCallbacks(kHomeScoreIncreaseButton,
-									[&mcc]()
-	{
-		Logger::outputDebugString("callback arrive here");
-		auto home_score = mcc.GetHomeScore();
-		home_score++;
-
-		MessageManager::callAsync([home_score, &mcc]()
-		{
-			mcc.SetHomeScore(home_score);
-		});
-		return true;
-	});
-}
-
-void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mcc)
-{
-	RegisterHomeScoreIncreaseButton(mcc);
-}
-
 void BasketballApplication::shutdown()
 {
 	// Add your application's shutdown code here..
@@ -69,6 +47,87 @@ void BasketballApplication::anotherInstanceStarted(const String& commandLine)
 	// the other instance's command-line arguments were.
 }
 
+void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent& mcc)
+{
+	mcc.RegisterMainWindowCallbacks(kHomeScoreIncreaseButton,
+									[&mcc]()
+	{
+		Logger::outputDebugString("callback arrive here");
+		auto home_score = mcc.GetHomeScore();
+		home_score++;
+
+		MessageManager::callAsync([home_score, &mcc]()
+		{
+			mcc.SetHomeScore(home_score);
+		});
+		return true;
+	});
+}
+
+void BasketballApplication::RegisterHomeScoreDecreaseButton(MainContentComponent& mcc)
+{
+	mcc.RegisterMainWindowCallbacks(kHomeScoreDecreaseButton,
+									[&mcc]()
+	{
+		Logger::outputDebugString("callback arrive here");
+		auto home_score = mcc.GetHomeScore();
+
+		if (home_score == 0)
+			return false;
+		home_score--;
+
+		MessageManager::callAsync([home_score, &mcc]()
+		{
+			mcc.SetHomeScore(home_score);
+		});
+		return true;
+	});
+}
+
+void BasketballApplication::RegisterGuestScoreIncreaseButton(MainContentComponent& mcc)
+{
+	mcc.RegisterMainWindowCallbacks(kGuestScoreIncreaseButton,
+									[&mcc]()
+	{
+		Logger::outputDebugString("callback arrive here");
+		auto guest_score = mcc.GetGuestScore();
+		guest_score++;
+
+		MessageManager::callAsync([guest_score, &mcc]()
+		{
+			mcc.SetGuestScore(guest_score);
+		});
+		return true;
+	});
+}
+
+void BasketballApplication::RegisterGuestScoreDecreaseButton(MainContentComponent& mcc)
+{
+	mcc.RegisterMainWindowCallbacks(kGuestScoreDecreaseButton,
+									[&mcc]()
+	{
+		Logger::outputDebugString("callback arrive here");
+		auto guest_score = mcc.GetGuestScore();
+
+		if (guest_score == 0)
+			return false;
+		guest_score--;
+
+		MessageManager::callAsync([guest_score, &mcc]()
+		{
+			mcc.SetGuestScore(guest_score);
+		});
+		return true;
+	});
+}
+
+void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mcc)
+{
+	RegisterHomeScoreIncreaseButton(mcc);
+	RegisterHomeScoreDecreaseButton(mcc);
+	RegisterGuestScoreIncreaseButton(mcc);
+	RegisterGuestScoreDecreaseButton(mcc);
+}
 
 //=================================================================
 //class MainWindow
