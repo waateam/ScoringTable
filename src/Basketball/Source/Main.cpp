@@ -13,6 +13,10 @@
 
 using namespace waa;
 
+#define WindowButtonMinimum     1
+#define WindowButtonMaxmum      2
+#define WindowButtonClose       4
+
 BasketballApplication::BasketballApplication()
 {
 }
@@ -141,7 +145,7 @@ void BasketballApplication::MainWindow::closeButtonPressed()
 BasketballApplication::MainWindow::MainWindow(String name)
 	: DocumentWindow(name,
 					 Colours::lightgrey,
-					 5)
+					 WindowButtonMinimum + WindowButtonClose)
 {
 	main_component_ = new MainContentComponent();
 	setUsingNativeTitleBar(false);
