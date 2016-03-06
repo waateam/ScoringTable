@@ -39,6 +39,9 @@ public:
 	MainContentComponent();
 	~MainContentComponent();
 
+	void SetHomeScore(const int score);
+	int GetHomeScore() const;
+
 	void RegisterMainWindowCallbacks(const int callback_id,
 									 ButtonClickCallback bc_cb);
 

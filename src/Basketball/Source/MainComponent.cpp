@@ -167,6 +167,17 @@ void MainContentComponent::InitialGuestScoreDecreaseButton(Component& parent,
 	guest_score_decrease_button_.addListener(this);
 }
 
+void MainContentComponent::SetHomeScore(const int score)
+{
+	home_score_label_.setText(static_cast<String>(score),
+							  juce::NotificationType::sendNotification);
+}
+
+int MainContentComponent::GetHomeScore() const
+{
+	return home_score_label_.getText().getIntValue();
+}
+
 void MainContentComponent::buttonClicked(Button* b)
 {
 	CallbackBucket::iterator cb_iter;

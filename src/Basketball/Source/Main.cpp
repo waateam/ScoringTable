@@ -29,9 +29,16 @@ void BasketballApplication::initialise(const String& commandLine)
 void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent& mcc)
 {
 	mcc.RegisterMainWindowCallbacks(kHomeScoreIncreaseButton,
-									[]()
+									[&mcc]()
 	{
 		Logger::outputDebugString("callback arrive here");
+		auto home_score = mcc.GetHomeScore();
+		home_score++;
+
+		MessageManager::callAsync([home_score, &mcc]()
+		{
+			mcc.SetHomeScore(home_score);
+		});
 		return true;
 	});
 }
