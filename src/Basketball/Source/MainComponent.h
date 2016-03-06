@@ -10,6 +10,18 @@
 #define MAINCOMPONENT_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <map>
+
+namespace waa {
+
+enum ButtonType : int {
+	kHomeScoreIncreaseButton = 1,
+	kHomeScoreDecreaseButton,
+	kGuestScoreIncreaseButton,
+	kGuestScoreDecreaseButton
+};
+
+};
 
 
 //==============================================================================
@@ -20,15 +32,22 @@
 class MainContentComponent   : public Component,
 							   private Button::Listener
 {
+	typedef std::function<bool(const waa::ButtonType bt)> ButtonClickCallback;
+	typedef std::map<int, ButtonClickCallback> CallbackBucket;
 public:
 	//==============================================================================
 	MainContentComponent();
 	~MainContentComponent();
 
+	void RegisterMainWindowCallbacks(const int callback_id,
+									 ButtonClickCallback bc_cb);
+
 	void paint (Graphics&);
 	void resized();
 
 private:
+	CallbackBucket observers_;
+
 	TextButton home_score_increase_button_;
 	TextButton home_score_decrease_button_;
 

@@ -55,6 +55,12 @@ MainContentComponent::~MainContentComponent()
 {
 }
 
+void MainContentComponent::RegisterMainWindowCallbacks(const int callback_id,
+													   ButtonClickCallback bc_cb)
+{
+	observers_.insert(std::make_pair(callback_id, bc_cb));
+}
+
 void MainContentComponent::paint (Graphics& g)
 {
 	g.fillAll(Colour(0xff7DB9DE));
