@@ -58,12 +58,19 @@ BasketballApplication::MainWindow::MainWindow(String name)
 					 Colours::lightgrey,
 					 5)
 {
+	main_component_ = new MainContentComponent();
 	setUsingNativeTitleBar(false);
-	setContentOwned(new MainContentComponent(), true);
+	setContentOwned(main_component_, true);
 
 	centreWithSize(getWidth(), getHeight());
 	setVisible(true);
 
 	setResizable(false, false);
 	setFullScreen(false);
+}
+
+MainContentComponent& BasketballApplication::MainWindow::GetMainComponent() const
+{
+	jassert(main_component_ != nullptr);
+	return *main_component_;
 }
