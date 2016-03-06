@@ -20,6 +20,12 @@ void BasketballApplication::initialise(const String& commandLine)
 	// This method is where you should put your application's initialisation code..
 
 	mainWindow = new MainWindow(getApplicationName());
+
+	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
+}
+
+void RegisterMainWindowCallbacks(MainContentComponent& mcc)
+{
 }
 
 void BasketballApplication::shutdown()
