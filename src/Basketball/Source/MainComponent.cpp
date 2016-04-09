@@ -19,7 +19,7 @@ enum WindowParameter : int {
 	kWindowHeight = 400
 };
 
-void InitialControlScoreTextButton(TextButton& button,
+void InitialScoreTextControlButton(TextButton& button,
 								   Component& parent,
 								   const String& button_text = String::empty,
 								   int x = 0,
@@ -139,7 +139,7 @@ void MainContentComponent::InitialGuestScoreLabel(Component& parent)
 void MainContentComponent::InitialHomeScoreIncreaseButton(Component& parent,
 														  const Component& home_score_laebl)
 {
-	InitialControlScoreTextButton(home_score_increase_button_,
+	InitialScoreTextControlButton(home_score_increase_button_,
 								  parent,
 								  "+1",
 								  home_score_laebl.getX() - 25,
@@ -153,7 +153,7 @@ void MainContentComponent::InitialHomeScoreIncreaseButton(Component& parent,
 void MainContentComponent::InitialHomeScoreDecreaseButton(Component& parent,
 														  const Component& home_score_increase_button)
 {
-	InitialControlScoreTextButton(home_score_decrease_button_,
+	InitialScoreTextControlButton(home_score_decrease_button_,
 								  parent,
 								  "-1",
 								  home_score_increase_button.getRight() + 20,
@@ -167,7 +167,7 @@ void MainContentComponent::InitialHomeScoreDecreaseButton(Component& parent,
 void MainContentComponent::InitialGuestScorePlusButton(Component& parent,
 													   const Component& guest_score_laebl)
 {
-	InitialControlScoreTextButton(guest_score_increase_button_,
+	InitialScoreTextControlButton(guest_score_increase_button_,
 								  parent,
 								  "+1",
 								  guest_score_laebl.getX() - 25,
@@ -181,7 +181,7 @@ void MainContentComponent::InitialGuestScorePlusButton(Component& parent,
 void MainContentComponent::InitialGuestScoreDecreaseButton(Component& parent,
 														   const Component& guest_score_increase_button)
 {
-	InitialControlScoreTextButton(guest_score_decrease_button_,
+	InitialScoreTextControlButton(guest_score_decrease_button_,
 								  parent,
 								  "-1",
 								  guest_score_increase_button.getRight() + 20,
