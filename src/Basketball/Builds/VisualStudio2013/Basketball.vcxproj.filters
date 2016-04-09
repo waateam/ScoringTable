@@ -298,6 +298,9 @@
     <Filter Include="Juce Library Code">
       <UniqueIdentifier>{8B4D1BAA-6DB4-CAEC-A0FA-271F354D5C61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Basketball\../Common">
+      <UniqueIdentifier>{a55acc16-4658-4f3a-bf68-446780b14948}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
@@ -1442,6 +1445,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\third_party\JUCE\modules\juce_video\juce_video.cpp">
       <Filter>Juce Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\arduino_manager.cpp">
+      <Filter>Basketball\../Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2794,6 +2800,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Main.h">
       <Filter>Basketball\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\arduino_manager.h">
+      <Filter>Basketball\../Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

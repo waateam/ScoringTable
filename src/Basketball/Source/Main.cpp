@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "Main.h"
+#include <Common/arduino_manager.h>
 
 using namespace waa;
 
@@ -28,6 +29,10 @@ void BasketballApplication::initialise(const String& commandLine)
 	mainWindow = new MainWindow(getApplicationName());
 
 	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
+
+	InitializeArduinoManager();
+	
+	GetArduinoManagerPtr()
 }
 
 void BasketballApplication::shutdown()
@@ -131,6 +136,20 @@ void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mc
 	RegisterHomeScoreDecreaseButton(mcc);
 	RegisterGuestScoreIncreaseButton(mcc);
 	RegisterGuestScoreDecreaseButton(mcc);
+}
+
+bool BasketballApplication::InitializeArduinoManager()
+{
+	jassert(adm_ == nullptr);
+
+	adm_ = std::make_unique<ArduinoManager>();
+	if (!adm_->SetupArduinoEnvironment())
+		return false;
+
+	if (!adm_->PingAuduino())
+		return false;
+
+	return true;
 }
 
 //=================================================================

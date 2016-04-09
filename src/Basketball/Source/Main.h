@@ -7,10 +7,17 @@
 #pragma once
 
 #include "MainComponent.h"
+#include <memory>
+
+namespace waa {
+	class ArduinoManager;
+}
 
 //==============================================================================
 class BasketballApplication : public JUCEApplication
 {
+	std::unique_ptr<waa::ArduinoManager> adm_;
+
 public:
 	//==============================================================================
 	BasketballApplication();
@@ -33,6 +40,9 @@ public:
 
 	void RegisterGuestScoreIncreaseButton(MainContentComponent& mcc);
 	void RegisterGuestScoreDecreaseButton(MainContentComponent& mcc);
+
+	bool InitializeArduinoManager();
+
 	/*
 	This class implements the desktop window that contains an instance of
 	our MainContentComponent class.
