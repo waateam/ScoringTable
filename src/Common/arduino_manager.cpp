@@ -37,5 +37,10 @@ bool ArduinoManager::EndArduino()
 	return true;
 }
 
+bool SendCommandToArduino(const String& cmd)
+{
+	return true;
+}
+
 
 }

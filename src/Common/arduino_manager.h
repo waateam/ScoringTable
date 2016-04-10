@@ -21,7 +21,8 @@ public:
 	bool StartArduino();
 	bool EndArduino();
 
-	
+	bool SendCommandToArduino(const String& cmd);
+
 private:
 
 };
