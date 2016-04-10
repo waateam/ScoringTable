@@ -31,8 +31,6 @@ void BasketballApplication::initialise(const String& commandLine)
 	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
 
 	InitializeArduinoManager();
-	
-	GetArduinoManagerPtr()
 }
 
 void BasketballApplication::shutdown()
