@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "Main.h"
 #include <Common/arduino_manager.h>
+#include <Common/clock_controller.h>
 
 using namespace waa;
 
@@ -19,6 +20,7 @@ using namespace waa;
 #define WindowButtonClose       4
 
 BasketballApplication::BasketballApplication()
+	: cc_(nullptr)
 {
 }
 
@@ -31,6 +33,7 @@ void BasketballApplication::initialise(const String& commandLine)
 	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
 
 	InitializeArduinoManager();
+	InitializeGameClock();
 }
 
 void BasketballApplication::shutdown()
@@ -134,6 +137,21 @@ void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mc
 	RegisterHomeScoreDecreaseButton(mcc);
 	RegisterGuestScoreIncreaseButton(mcc);
 	RegisterGuestScoreDecreaseButton(mcc);
+}
+
+bool BasketballApplication::InitializeGameClock()
+{
+	cc_ = std::make_unique<ClockController>(10,
+		[](int remain_sec) 
+	{
+		Logger::outputDebugString(String::formatted("Time remain: %d second", remain_sec));
+	},
+		[]() 
+	{
+		Logger::outputDebugString("Time is up !!!!!");
+	});
+	cc_->ClockStart();
+	return true;
 }
 
 bool BasketballApplication::InitializeArduinoManager()

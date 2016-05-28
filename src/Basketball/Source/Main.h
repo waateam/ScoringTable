@@ -11,12 +11,14 @@
 
 namespace waa {
 	class ArduinoManager;
+	class ClockController;
 }
 
 //==============================================================================
 class BasketballApplication : public JUCEApplication
 {
 	std::unique_ptr<waa::ArduinoManager> adm_;
+	std::unique_ptr<waa::ClockController> cc_;
 
 public:
 	//==============================================================================
@@ -42,6 +44,7 @@ public:
 	void RegisterGuestScoreDecreaseButton(MainContentComponent& mcc);
 
 	bool InitializeArduinoManager();
+	bool InitializeGameClock();
 
 	/*
 	This class implements the desktop window that contains an instance of
