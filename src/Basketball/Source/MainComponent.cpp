@@ -11,6 +11,7 @@
 using namespace waa;
 
 const char kScoreFontName[] = "Segoe UI";
+const char kGameClockFontName[] = "Segoe UI";
 
 namespace {
 
@@ -46,7 +47,7 @@ MainContentComponent::MainContentComponent()
 {
 	setSize(kWindowWidth, kWindowHeight);
 
-	InitialGameClockLabel(*this);
+	InitailGameClock(*this);
 	InitialShotClockLabel(*this, game_clock_label_);
 
 	InitialHomeScoreLabel(*this);
@@ -61,17 +62,17 @@ MainContentComponent::~MainContentComponent()
 {
 }
 
-void MainContentComponent::InitialGameClockLabel(Component& parent)
+void MainContentComponent::InitailGameClock(Component & parent)
 {
 	game_clock_label_.setColour(Label::textColourId, Colours::red);
-	game_clock_label_.setText("00:00", dontSendNotification);
-	game_clock_label_.setFont(Font(kScoreFontName, 100, juce::Font::bold));
-	
+	game_clock_label_.setText(String(0), dontSendNotification);
+	game_clock_label_.setFont(Font(kGameClockFontName, 100, juce::Font::bold));
+
 	const Rectangle<int> label_size(0, 0, 200, 100);
-	game_clock_label_.setBounds((parent.getWidth() / 2) - (label_size.getWidth()/2),
-								0,
-								label_size.getWidth(),
-								label_size.getHeight());
+	game_clock_label_.setBounds((parent.getWidth() / 2) - (label_size.getWidth() / 2),
+		0,
+		label_size.getWidth(),
+		label_size.getHeight());
 
 	parent.addAndMakeVisible(game_clock_label_);
 }
@@ -108,6 +109,11 @@ void MainContentComponent::resized()
 	// This is called when the MainContentComponent is resized.
 	// If you add any child components, this is where you should
 	// update their positions.
+}
+
+void MainContentComponent::SetGameClock(int time_sec)
+{
+	game_clock_label_.setText(String(time_sec), dontSendNotification);
 }
 
 void MainContentComponent::InitialHomeScoreLabel(Component& parent)

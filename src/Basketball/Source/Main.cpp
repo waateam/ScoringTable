@@ -33,7 +33,7 @@ void BasketballApplication::initialise(const String& commandLine)
 	RegisterMainWindowCallbacks(mainWindow->GetMainComponent());
 
 	InitializeArduinoManager();
-	InitializeGameClock();
+	InitializeGameClock(mainWindow->GetMainComponent());
 }
 
 void BasketballApplication::shutdown()
@@ -55,6 +55,16 @@ void BasketballApplication::anotherInstanceStarted(const String& commandLine)
 	// When another instance of the app is launched while this one is running,
 	// this method is invoked, and the commandLine parameter tells you what
 	// the other instance's command-line arguments were.
+}
+
+void BasketballApplication::RegisterGameColckStart(MainContentComponent& mcc)
+{
+	cc_->ClockStart();
+}
+
+void BasketballApplication::RegisterGameColckPause(MainContentComponent & mcc)
+{
+	cc_->ClockPause();
 }
 
 void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent& mcc)
@@ -139,16 +149,21 @@ void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mc
 	RegisterGuestScoreDecreaseButton(mcc);
 }
 
-bool BasketballApplication::InitializeGameClock()
+bool BasketballApplication::InitializeGameClock(MainContentComponent& mcc)
 {
-	cc_ = std::make_unique<ClockController>(10,
-		[](int remain_sec) 
+	int game_clock_total_time_sec = 10;
+	mcc.SetGameClock(game_clock_total_time_sec);
+
+	cc_ = std::make_unique<ClockController>(game_clock_total_time_sec,
+		[&mcc](int remain_sec) 
 	{
 		Logger::outputDebugString(String::formatted("Time remain: %d second", remain_sec));
+		mcc.SetGameClock(remain_sec);
 	},
-		[]() 
+		[&mcc]() 
 	{
 		Logger::outputDebugString("Time is up !!!!!");
+		mcc.SetGameClock(0);
 	});
 	cc_->ClockStart();
 	return true;

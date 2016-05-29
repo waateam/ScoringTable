@@ -18,7 +18,10 @@ enum ButtonType : int {
 	kHomeScoreIncreaseButton = 1,
 	kHomeScoreDecreaseButton,
 	kGuestScoreIncreaseButton,
-	kGuestScoreDecreaseButton
+	kGuestScoreDecreaseButton,
+
+	kGameClockStartButton,
+	kGameClockPauseButton
 };
 
 };
@@ -51,6 +54,7 @@ public:
 	void paint (Graphics&);
 	void resized();
 
+	void SetGameClock(int time_sec);
 private:
 	CallbackBucket observers_;
 
@@ -67,7 +71,8 @@ private:
 
 	void buttonClicked(Button* b) override;
 
-	void InitialGameClockLabel(Component& parent);
+	void InitailGameClock(Component& parent);
+	//void InitialGameClockLabel(Component& parent);
 	void InitialShotClockLabel(Component& parent,
 							   const Component& game_clock_label);
 

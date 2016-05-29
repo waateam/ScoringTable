@@ -37,6 +37,9 @@ public:
 	//==============================================================================
 	void RegisterMainWindowCallbacks(MainContentComponent& mcc);
 
+	void RegisterGameColckStart(MainContentComponent& mcc);
+	void RegisterGameColckPause(MainContentComponent& mcc);
+
 	void RegisterHomeScoreIncreaseButton(MainContentComponent& mcc);
 	void RegisterHomeScoreDecreaseButton(MainContentComponent& mcc);
 
@@ -44,7 +47,7 @@ public:
 	void RegisterGuestScoreDecreaseButton(MainContentComponent& mcc);
 
 	bool InitializeArduinoManager();
-	bool InitializeGameClock();
+	bool InitializeGameClock(MainContentComponent& mcc);
 
 	/*
 	This class implements the desktop window that contains an instance of
