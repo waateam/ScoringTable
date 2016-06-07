@@ -10,7 +10,7 @@
 
 #include <JuceHeader.h>
 #include "Main.h"
-#include <Common/arduino_manager.h>
+#include <../Common/arduino_manager.h>
 #include <Common/clock_controller.h>
 
 using namespace waa;
