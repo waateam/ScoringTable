@@ -301,6 +301,9 @@
     <Filter Include="Basketball\../Common">
       <UniqueIdentifier>{a55acc16-4658-4f3a-bf68-446780b14948}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Basketball\../Common\PC2Arduino">
+      <UniqueIdentifier>{6297306c-46ee-4738-9dbf-989a060c641f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
@@ -1451,6 +1454,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Common\clock_controller.cpp">
       <Filter>Basketball\../Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\PC2Arduino\PC2Arduino.cpp">
+      <Filter>Basketball\../Common\PC2Arduino</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\PC2Arduino\Serial.cpp">
+      <Filter>Basketball\../Common\PC2Arduino</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\PC2Arduino\stdafx.cpp">
+      <Filter>Basketball\../Common\PC2Arduino</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2809,6 +2821,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Common\clock_controller.h">
       <Filter>Basketball\../Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\PC2Arduino\Serial.h">
+      <Filter>Basketball\../Common\PC2Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\PC2Arduino\stdafx.h">
+      <Filter>Basketball\../Common\PC2Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\PC2Arduino\targetver.h">
+      <Filter>Basketball\../Common\PC2Arduino</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
