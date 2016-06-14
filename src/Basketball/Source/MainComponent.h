@@ -64,6 +64,9 @@ private:
 	TextButton guest_score_increase_button_;
 	TextButton guest_score_decrease_button_;
 
+	TextButton game_clock_start_button_;
+	TextButton game_clock_stop_button_;
+
 	Label game_clock_label_;
 	Label shot_clock_label_;
 	Label home_score_label_;
@@ -72,6 +75,8 @@ private:
 	void buttonClicked(Button* b) override;
 
 	void InitailGameClock(Component& parent);
+	void InitialGameClockStartButton(Component & parent, const Component & game_clock_label);
+	void InitialGameClockStopButton(Component & parent, const Component & game_clock_label);
 	//void InitialGameClockLabel(Component& parent);
 	void InitialShotClockLabel(Component& parent,
 							   const Component& game_clock_label);

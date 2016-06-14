@@ -48,6 +48,8 @@ MainContentComponent::MainContentComponent()
 	setSize(kWindowWidth, kWindowHeight);
 
 	InitailGameClock(*this);
+	InitialGameClockStartButton(*this, game_clock_label_);
+	InitialGameClockStopButton(*this, game_clock_label_);
 	InitialShotClockLabel(*this, game_clock_label_);
 
 	InitialHomeScoreLabel(*this);
@@ -56,6 +58,8 @@ MainContentComponent::MainContentComponent()
 	InitialHomeScoreDecreaseButton(*this, home_score_increase_button_);
 	InitialGuestScorePlusButton(*this, guest_score_label_);
 	InitialGuestScoreDecreaseButton(*this, guest_score_increase_button_);
+
+
 }
 
 MainContentComponent::~MainContentComponent()
@@ -75,6 +79,34 @@ void MainContentComponent::InitailGameClock(Component & parent)
 		label_size.getHeight());
 
 	parent.addAndMakeVisible(game_clock_label_);
+}
+
+void MainContentComponent::InitialGameClockStartButton(Component& parent,const Component& game_clock_label)
+{
+	game_clock_start_button_.setButtonText("Start");
+	game_clock_start_button_.setEnabled(true);
+	game_clock_start_button_.setColour(TextButton::buttonColourId, Colours::gold);
+	game_clock_start_button_.setColour(TextButton::textColourOffId, Colours::chocolate);
+	game_clock_start_button_.setBounds(game_clock_label.getX() + game_clock_label.getWidth() + 20,
+									   game_clock_label.getY() +20,
+									   50,
+									   20);
+	//game_clock_start_button_.changeWidthToFitText();
+	parent.addAndMakeVisible(game_clock_start_button_);
+}
+
+void MainContentComponent::InitialGameClockStopButton(Component& parent, const Component& game_clock_label)
+{
+	game_clock_stop_button_.setButtonText("Stop");
+	game_clock_stop_button_.setEnabled(true);
+	game_clock_stop_button_.setColour(TextButton::buttonColourId, Colours::gold);
+	game_clock_stop_button_.setColour(TextButton::textColourOffId, Colours::chocolate);
+	game_clock_stop_button_.setBounds(game_clock_label.getX() + game_clock_label.getWidth() + 20,
+									  game_clock_label.getY() + game_clock_label.getHeight() - 20, 
+									  50,
+									  20);
+	//game_clock_start_button_.changeWidthToFitText();
+	parent.addAndMakeVisible(game_clock_stop_button_);
 }
 
 void MainContentComponent::InitialShotClockLabel(Component& parent,
