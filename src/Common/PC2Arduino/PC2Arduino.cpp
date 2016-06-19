@@ -16,6 +16,8 @@ const char PCCommand[15][10] = { "pause", "continue", "start600", "start24", "st
 const char ArduinoCommand[15] = { 'T', 'T', 't', 'R', 'r', 'U', 'D', 'F', 'P', 'V', 'V', 'A', 'a', 'B', 'b', };
 
 bool PC2Arduino(char *command, _TCHAR* Comport){
+	
+	
 	int i = 0;
 	char buffer='\0';
 	bool status = false;
@@ -31,10 +33,12 @@ bool PC2Arduino(char *command, _TCHAR* Comport){
 		serial.write(&ArduinoCommand[i]);
 		serial.read(&buffer,1);
 		if (buffer=='0')	status = true;
+		
 	}
 	else{
 		printf("command error,please insert again\n");
 	}
+	
 
 	return status;
 }
