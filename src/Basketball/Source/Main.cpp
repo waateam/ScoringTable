@@ -13,6 +13,7 @@
 #include <Common/arduino_manager.h>
 #include <Common/PC2Arduino/Serial.h>
 #include <Common/clock_controller.h>
+#include <Common/PC2Arduino/PC2Arduino.h>
 
 using namespace waa;
 
@@ -76,10 +77,11 @@ void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent
 		Logger::outputDebugString("callback arrive here");
 		auto home_score = mcc.GetHomeScore();
 		home_score++;
-
+		waa::PC2Arduino("IncA", (_TCHAR*)"COM3");
 		MessageManager::callAsync([home_score, &mcc]()
 		{
 			mcc.SetHomeScore(home_score);
+			
 		});
 		return true;
 	});
@@ -96,7 +98,7 @@ void BasketballApplication::RegisterHomeScoreDecreaseButton(MainContentComponent
 		if (home_score == 0)
 			return false;
 		home_score--;
-
+		waa::PC2Arduino("DecA", (_TCHAR*)"COM3");
 		MessageManager::callAsync([home_score, &mcc]()
 		{
 			mcc.SetHomeScore(home_score);

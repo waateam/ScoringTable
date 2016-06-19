@@ -1252,6 +1252,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\Common\arduino_manager.h" />
     <ClInclude Include="..\..\..\Common\clock_controller.h" />
+    <ClInclude Include="..\..\..\Common\PC2Arduino\PC2Arduino.h" />
     <ClInclude Include="..\..\..\Common\PC2Arduino\Serial.h" />
     <ClInclude Include="..\..\..\Common\PC2Arduino\stdafx.h" />
     <ClInclude Include="..\..\..\Common\PC2Arduino\targetver.h" />
