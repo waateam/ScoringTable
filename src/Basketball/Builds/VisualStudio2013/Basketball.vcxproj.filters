@@ -2831,9 +2831,6 @@
     <ClInclude Include="..\..\..\Common\PC2Arduino\targetver.h">
       <Filter>Basketball\../Common\PC2Arduino</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Common\PC2Arduino\PC2Arduino.h">
-      <Filter>Basketball\../Common\PC2Arduino</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\third_party\JUCE\modules\juce_audio_basics\juce_module_info">
