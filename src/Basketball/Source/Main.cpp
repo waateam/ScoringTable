@@ -36,6 +36,8 @@ void BasketballApplication::initialise(const String& commandLine)
 
 	InitializeArduinoManager();
 	InitializeGameClock(mainWindow->GetMainComponent());
+	waa::OpenCom();
+
 }
 
 void BasketballApplication::shutdown()
@@ -77,7 +79,8 @@ void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent
 		Logger::outputDebugString("callback arrive here");
 		auto home_score = mcc.GetHomeScore();
 		home_score++;
-		waa::PC2Arduino("IncA", (_TCHAR*)"COM3");
+		
+		waa::PC2Arduino("IncA");
 		MessageManager::callAsync([home_score, &mcc]()
 		{
 			mcc.SetHomeScore(home_score);
@@ -98,7 +101,8 @@ void BasketballApplication::RegisterHomeScoreDecreaseButton(MainContentComponent
 		if (home_score == 0)
 			return false;
 		home_score--;
-		waa::PC2Arduino("DecA", (_TCHAR*)"COM3");
+		
+		waa::PC2Arduino("DecA");
 		MessageManager::callAsync([home_score, &mcc]()
 		{
 			mcc.SetHomeScore(home_score);
@@ -115,7 +119,7 @@ void BasketballApplication::RegisterGuestScoreIncreaseButton(MainContentComponen
 		Logger::outputDebugString("callback arrive here");
 		auto guest_score = mcc.GetGuestScore();
 		guest_score++;
-
+		waa::PC2Arduino("IncB");
 		MessageManager::callAsync([guest_score, &mcc]()
 		{
 			mcc.SetGuestScore(guest_score);
@@ -135,7 +139,7 @@ void BasketballApplication::RegisterGuestScoreDecreaseButton(MainContentComponen
 		if (guest_score == 0)
 			return false;
 		guest_score--;
-
+		waa::PC2Arduino("DecB");
 		MessageManager::callAsync([guest_score, &mcc]()
 		{
 			mcc.SetGuestScore(guest_score);

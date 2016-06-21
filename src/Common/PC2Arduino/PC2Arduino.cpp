@@ -11,14 +11,22 @@ using namespace std;
 
 namespace waa {
 
-bool waa::PC2Arduino(char *command, _TCHAR* Comport)
+	tstring commPortName((_TCHAR*)"COM4");
+	Serial serial(commPortName);
+	
+	
+	bool waa::OpenCom(void){		
+		serial.flush();
+		return true;
+	}
+	bool waa::PC2Arduino(char *command)
 {
 	int i = 0;
 	char buffer = '\0';
 	bool status = false;
-	tstring commPortName(Comport);
-	Serial serial(commPortName);
-	serial.flush();
+	//tstring commPortName(Comport);
+	//Serial serial(commPortName);
+	//serial.flush();
 	do {
 		i++;
 	} while (strcmp(command, PCCommand[i]) != 0 || i>14);
