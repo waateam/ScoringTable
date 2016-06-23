@@ -135,6 +135,7 @@
     <ClCompile Include="..\..\..\Common\PC2Arduino\PC2Arduino.cpp" />
     <ClCompile Include="..\..\..\Common\PC2Arduino\Serial.cpp" />
     <ClCompile Include="..\..\..\Common\PC2Arduino\stdafx.cpp" />
+    <ClCompile Include="..\..\..\Common\ScoreRecord.cpp" />
     <ClCompile Include="..\..\Source\MainComponent.cpp" />
     <ClCompile Include="..\..\Source\Main.cpp" />
     <ClCompile Include="..\..\..\third_party\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
@@ -1256,6 +1257,7 @@
     <ClInclude Include="..\..\..\Common\PC2Arduino\Serial.h" />
     <ClInclude Include="..\..\..\Common\PC2Arduino\stdafx.h" />
     <ClInclude Include="..\..\..\Common\PC2Arduino\targetver.h" />
+    <ClInclude Include="..\..\..\Common\ScoreRecord.h" />
     <ClInclude Include="..\..\Source\Main.h" />
     <ClInclude Include="..\..\Source\MainComponent.h" />
     <ClInclude Include="..\..\..\third_party\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h" />

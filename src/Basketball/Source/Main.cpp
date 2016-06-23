@@ -14,6 +14,7 @@
 #include <Common/PC2Arduino/Serial.h>
 #include <Common/clock_controller.h>
 #include <Common/PC2Arduino/PC2Arduino.h>
+#include <Common\ScoreRecord.h>
 
 using namespace waa;
 
@@ -37,7 +38,7 @@ void BasketballApplication::initialise(const String& commandLine)
 	InitializeArduinoManager();
 	InitializeGameClock(mainWindow->GetMainComponent());
 	waa::OpenCom();
-
+	waa::TimeStampInitial();
 }
 
 void BasketballApplication::shutdown()
@@ -73,6 +74,7 @@ void BasketballApplication::RegisterGameColckPause(MainContentComponent & mcc)
 
 void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent& mcc)
 {
+	
 	mcc.RegisterMainWindowCallbacks(kHomeScoreIncreaseButton,
 									[&mcc]()
 	{
@@ -86,6 +88,8 @@ void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent
 			mcc.SetHomeScore(home_score);
 			
 		});
+		int ClockTime = cc_->GetClockValue();
+		waa::time_record(DEF_TEAM_HOME, home_score, ClockTime);
 		return true;
 	});
 }
@@ -173,6 +177,7 @@ bool BasketballApplication::InitializeGameClock(MainContentComponent& mcc)
 		mcc.SetGameClock(0);
 	});
 	cc_->ClockStart();
+	
 	return true;
 }
 
