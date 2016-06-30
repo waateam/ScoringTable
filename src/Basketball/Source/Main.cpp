@@ -14,7 +14,7 @@
 #include <Common/PC2Arduino/Serial.h>
 #include <Common/clock_controller.h>
 #include <Common/PC2Arduino/PC2Arduino.h>
-#include <Common\ScoreRecord.h>
+#include <Common/ScoreRecord.h>
 
 using namespace waa;
 
@@ -76,7 +76,7 @@ void BasketballApplication::RegisterHomeScoreIncreaseButton(MainContentComponent
 {
 	
 	mcc.RegisterMainWindowCallbacks(kHomeScoreIncreaseButton,
-									[&mcc]()
+									[&mcc,this]()
 	{
 		Logger::outputDebugString("callback arrive here");
 		auto home_score = mcc.GetHomeScore();
