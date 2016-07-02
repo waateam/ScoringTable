@@ -162,7 +162,7 @@ void BasketballApplication::RegisterMainWindowCallbacks(MainContentComponent& mc
 
 bool BasketballApplication::InitializeGameClock(MainContentComponent& mcc)
 {
-	int game_clock_total_time_sec = 10;
+	int game_clock_total_time_sec = 720;
 	mcc.SetGameClock(game_clock_total_time_sec);
 
 	cc_ = std::make_unique<ClockController>(game_clock_total_time_sec,

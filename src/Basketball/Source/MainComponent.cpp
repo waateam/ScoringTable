@@ -113,8 +113,21 @@ void MainContentComponent::resized()
 
 void MainContentComponent::SetGameClock(int time_sec)
 {
-	game_clock_label_.setText(String(time_sec), dontSendNotification);
+	int time_minute, time_sec_in_tens, time_sec_in_ones;
+	char time_format[6];
+	time_minute = time_sec / 60;
+	time_sec = time_sec % 60;
+	time_sec_in_tens = time_sec / 10;
+	time_sec_in_ones = time_sec % 10;
+
+	auto s = String::formatted("%d : %d%d", time_minute, time_sec_in_tens, time_sec_in_ones);
+
+	game_clock_label_.setText(s, dontSendNotification);
 }
+//void MainContentComponent::SetShotClock(int time_sec)
+//{
+//	game_clock_label_.setText(String(time_sec), dontSendNotification);
+//}
 
 void MainContentComponent::InitialHomeScoreLabel(Component& parent)
 {
