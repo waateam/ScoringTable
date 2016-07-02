@@ -2,10 +2,11 @@
 
 namespace waa {
 	
-	void waa::time_record(int team ,int score,int time){
+	int ScoreTimeStamp[2][100] = {};
+	void time_record(int team ,int score,int time){
 		ScoreTimeStamp[team][score] = time;
 	}
-	void waa::TimeStampInitial(void){
+	void TimeStampInitial(void){
 		int i = 0;
 		for (i = 0; i < 100; i++){
 			ScoreTimeStamp[0][i] = 0;
